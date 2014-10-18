@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body data-lift-content-id="main">
+  <div id="main" data-lift="surround?with=default;at=content" ng-controller="TodoController">
+    <h1>Chat Messages</h1>
+    <p>
+      All input fields below sends chat messages in here.
+			<!-- the behavior of the div -->
+      <div class="lift:comet?type=Chat"> 
+        <span name="sendMessage"></span>
+        <ul>
+          <li>A message</li>
+          <li class="clearable">Another message</li>
+          <li class="clearable">A third message</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <h1>Comet Send Test (warmup)</h1>
+      <h2>Setup/Description</h2>
+      <p>
+        You will need two computers. Other to run Lift server and client for the server. Laptop 2 connects to the Lift server, sends messages and closes the lid.
+      </p>
+      <h2>Test</h2>
+      <ol>
+        <li>Laptop 2 sends a message "Hi all!" => All clients connected to the Lift server shows the chat message</li>
+        <li>Laptop 2 closes laptop lid</li>
+        <li>Laptop 2 opens laptop lid after 4 minutes</li>
+        <li>Laptop 2 sends new message "delayed"</li>
+      </ol>
+      <h2>Result</h2>
+      <ul>
+        <li>Other clients connected to Lift server shows "delayed" message immediately</li>
+        <li>Laptop 2 shows sent "delayed" message in about 2 minutes</li>
+      </ul>
+
+      <div>
+        <input type="text" ng-model="msg">
+        <a ng-click="sendMessage()" class="pure-button pure-button-primary">sendMessage</a>
+      </div>
+
+      <h1>ResponseShortcutException Test</h1>
+      Unused functions life time is set to 10 seconds to repeat the problem faster. All ways reproduces the same problem, but uses different ways to send the message. 
+
+      <p>
+      Boot.scala:<br>
+      <code>
+        LiftRules.unusedFunctionsLifeTime = 10.seconds
+      </code>
+      </p>
+
+      <h2>Setup</h2>
+      Only one computer is needed to test ResponseShortcutException problem.
+
+      <h2>Test</h2>
+      <ol>
+        <li>Refresh page</li>
+        <li>Type message any of the fields => message is shown in chat messages</li>
+        <li>Wait 10 seconds</li>
+        <li>Send new message</li>
+      </ol>
+      <h2>Result</h2>
+        <ul>
+          <li>Browser receives:<br><code>POST http://localhost:8080/ajax_request/F2125942510255VCLGZ-10/ 500 (Shortcut) </code></li>
+        </ul>
+
+
+      <h2>Ajax form test</h2>
+      <div>
+        <form class="lift:form.ajax">
+          <input class="lift:ChatIn" id="chat_in"/>
+          <input type="submit" value="Say Something" class="pure-button"/>
+        </form>
+      </div>
+
+      <div data-lift="AngularSnippet">
+				<div>
+          <h3>
+          Send message using roundtrip
+          </h3>
+          <div>
+  					<input type="text" ng-model="text">
+  					<a ng-click="sayHi()" class="pure-button">sayHi</a>
+          </div>
+				</div>
+			</div>
+
+     <h2>Ajax click test</h2>
+     <div data-lift="HelloWorld">
+        <a name="ajax-click" style="cursor:pointer;" class="pure-button">Ajax Click</a>
+     </div>
+
+   </p>
+ </div>
+</body>
+</html>
