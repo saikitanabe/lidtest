@@ -43,58 +43,6 @@
         <input type="text" ng-model="msg">
         <a ng-click="sendMessage()" class="pure-button pure-button-primary">sendMessage</a>
       </div>
-
-      <h1>ResponseShortcutException Test</h1>
-      Unused functions life time is set to 10 seconds to repeat the problem faster. All ways reproduces the same problem, but uses different ways to send the message. 
-
-      <p>
-      Boot.scala:<br>
-      <code>
-        LiftRules.unusedFunctionsLifeTime = 10.seconds
-      </code>
-      </p>
-
-      <h2>Setup</h2>
-      Only one computer is needed to test ResponseShortcutException problem.
-
-      <h2>Test</h2>
-      <ol>
-        <li>Refresh page</li>
-        <li>Type message any of the fields => message is shown in chat messages</li>
-        <li>Wait 10 seconds</li>
-        <li>Send new message</li>
-      </ol>
-      <h2>Result</h2>
-        <ul>
-          <li>Browser receives:<br><code>POST http://localhost:8080/ajax_request/F2125942510255VCLGZ-10/ 500 (Shortcut) </code></li>
-        </ul>
-
-
-      <h2>Ajax form test</h2>
-      <div>
-        <form class="lift:form.ajax">
-          <input class="lift:ChatIn" id="chat_in"/>
-          <input type="submit" value="Say Something" class="pure-button"/>
-        </form>
-      </div>
-
-      <div data-lift="AngularSnippet">
-				<div>
-          <h3>
-          Send message using roundtrip
-          </h3>
-          <div>
-  					<input type="text" ng-model="text">
-  					<a ng-click="sayHi()" class="pure-button">sayHi</a>
-          </div>
-				</div>
-			</div>
-
-     <h2>Ajax click test</h2>
-     <div data-lift="HelloWorld">
-        <a name="ajax-click" style="cursor:pointer;" class="pure-button">Ajax Click</a>
-     </div>
-
    </p>
  </div>
 </body>

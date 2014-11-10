@@ -46,20 +46,6 @@ class Boot extends Loggable {
     LiftRules.early.append(_.setCharacterEncoding("UTF-8"))
 
     // LiftRules.liftGCPollingInterval = 10.seconds
-    LiftRules.unusedFunctionsLifeTime = 10.seconds
-
-    LiftRules.handleUnmappedParameter.default.set((req: Req, parameterName: String) => {
-      if (parameterName.startsWith("F")) {
-        // S.redirectTo ResponseShortcutException(() => JsonResponse(JE.Call("location.reload")), Empty, false)
-        // throw ResponseShortcutException(() => JsonResponse(JE.Call("location.reload")), Empty, false)
-        // throw ResponseShortcutException.shortcutResponse(JavaScriptResponse(JE.JsRaw("location.reload()").cmd))
-        // throw new ResponseShortcutException(() => JavaScriptResponse(JE.JsRaw("location.reload()").cmd), Empty, false)
-        throw ResponseShortcutException.shortcutResponse(JavaScriptResponse(JsCmds.Reload))
-
-        // S.redirectTo("#/hei")
-        logger.warn("Unmapped Lift-like parameter seen in request [%s]: %s".format(req.uri, parameterName))
-      }
-    })
 
     //Init the jQuery module, see http://liftweb.net/jquery for more information.
     LiftRules.jsArtifacts = JQueryArtifacts
