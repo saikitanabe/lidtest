@@ -4,7 +4,7 @@ version := "0.0.4"
 
 organization := "net.liftweb"
 
-scalaVersion := "2.10.0"
+scalaVersion := "2.11.4"
 
 resolvers ++= Seq(
                 // "ivy2 local"                     at "file://"+Path.userHome.absolutePath+".ivy2/local", 
@@ -19,7 +19,7 @@ seq(webSettings :_*)
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 libraryDependencies ++= {
-  val liftVersion = "3.0-M1"
+  val liftVersion = "3.0-M2"
   Seq(
     "net.liftweb"       %% "lift-webkit"        % liftVersion        % "compile",
     "net.liftmodules"   %% "lift-jquery-module_2.6" % "2.8",
